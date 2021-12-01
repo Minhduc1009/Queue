@@ -1,0 +1,53 @@
+package Queue;
+
+import java.util.Queue;
+import java.util.ArrayDeque;
+import java.util.Scanner;
+//import java.util.Math;
+
+
+
+public class job18 {
+	// ham test xem n co phai so nguyen to hay khong
+	public static boolean TestPrimeNumber(int n) {
+		if(n < 2) return false;
+		else{
+            for(int i = 2; i <= Math.sqrt(n);i++){
+                if(n % i == 0) return false;
+            }
+        }
+		return true;
+	}
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		Queue<Integer> que = new ArrayDeque<> ();
+		System.out.print("nhap so nguyen n: ");
+		int n = sc.nextInt();
+		
+	// them cac so tu 2 den 9 cho queue
+		 for (int i = 2;  i < 10; i++){
+		        if (TestPrimeNumber(i)){
+		            que.add(i);
+		        }
+		    }
+		 
+		 while(!que.isEmpty()) {
+			 for (int i = 1; i < 10; i++) {
+	                int a = que.peek() * 10 + i; // thêm các số tử 1 đến 9 vào cuối x*10 + i (x lan luot la cac phan tu cua queue)
+	                if (a <= n && TestPrimeNumber(a)) {// neu a <= n va a la so nguyen to thi them vao queue
+	                    que.add(a);
+	                }
+	            }
+			 System.out.print(que.poll() + " "); //output
+		 }
+	}
+
+}
+
+
+
+
+
+
+
